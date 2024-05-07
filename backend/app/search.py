@@ -25,5 +25,5 @@ chain = (
     | StrOutputParser())
 
 
-async def perform_search(text: str) -> str:
-    return chain.invoke({"question": text})
+async def perform_search(query: str) -> str:
+    return chain.invoke({"question": query})

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
 import ListGroup from "./components/ListGroup";
+import SearchProcessor from "./components/SearchProcessor";
 
 function App() {
   const [alertVisible, setAlertVisibility] = useState(false);
@@ -19,6 +20,7 @@ function App() {
         items={models}
         onSelectItem={handleSelectItem}
       />
+      <SearchProcessor />
       <Button onClick={() => setAlertVisibility(true)}>Search</Button>
       {alertVisible && (
         <Alert onClose={() => setAlertVisibility(false)}>
