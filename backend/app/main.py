@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 
-from app.search import search
-
+from app.search import perform_search
 
 app = FastAPI()
 
@@ -11,6 +10,7 @@ def read_root():
     return {"message": "Hello!"}
 
 
-@app.post("/search")
+@app.get("/search")
 async def search(text: str):
-    return {"response": search(text)}
+    answer = await perform_search(text)
+    return {"answer": answer}

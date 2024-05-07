@@ -6,7 +6,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import ChatOpenAI
 
-
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
@@ -17,14 +16,14 @@ prompt = ChatPromptTemplate.from_template(
 
 Search results: {context}
 
-Question: {question}"""
-)
+Question: {question}""")
+
 chain = (
     RunnablePassthrough.assign(context=(lambda x: x["question"]) | retriever)
     | prompt
     | ChatOpenAI(model="gpt-4", api_key=openai_api_key)
-    | StrOutputParser()
-)
+    | StrOutputParser())
 
-def search(q: str) -> str:
-    return chain.invoke({"question": q})
+
+async def perform_search(text: str) -> str:
+    return chain.invoke({"question": text})
