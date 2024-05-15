@@ -1,6 +1,6 @@
 # rag-app
 
-A Retrieval-Augmented Generation (RAG) application.
+A Retrieval-Augmented Generation (RAG) application made with LangChain, Tavily, FastAPI, and React.
 
 # Usage
 
