@@ -12,7 +12,9 @@ const SearchProcessor = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1/search?q=${query}`);
+      const response = await axios.get(
+        `http://localhost:8000/search?q=${query}`
+      );
       setAnswer(response.data.answer);
     } catch (error) {
       console.error("Error processing query:", error);
