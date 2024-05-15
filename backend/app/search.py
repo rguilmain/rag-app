@@ -21,7 +21,7 @@ Question: {question}""")
 chain = (
     RunnablePassthrough.assign(context=(lambda x: x["question"]) | retriever)
     | prompt
-    | ChatOpenAI(model="gpt-4", api_key=openai_api_key)
+    | ChatOpenAI(model="gpt-4o", api_key=openai_api_key)
     | StrOutputParser())
 
 
