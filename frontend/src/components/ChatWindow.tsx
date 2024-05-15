@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Button, TextField, Typography, Box } from "@mui/material";
 
 const ChatWindow: React.FC = () => {
@@ -9,9 +10,10 @@ const ChatWindow: React.FC = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:8000/search?q=${query}`);
-      const data = await res.text();
-      setResponse(data);
+      const response = await axios.get(
+        `http://localhost:8000/search?q=${query}`
+      );
+      setResponse(response.data.answer);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -33,7 +35,7 @@ const ChatWindow: React.FC = () => {
       >
         <TextField
           sx={{ marginRight: 1 }}
-          label="Enter your query"
+          label="Search for anything ..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
