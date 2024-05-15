@@ -1,34 +1,51 @@
-import { useState } from "react";
-import Alert from "./components/Alert";
-import Button from "./components/Button";
-import ListGroup from "./components/ListGroup";
-import SearchProcessor from "./components/SearchProcessor";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Box, Container } from '@mui/material';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-function App() {
-  const [alertVisible, setAlertVisibility] = useState(false);
+import Sidebar from './components/Sidebar';
+import ChatPage from './pages/ChatPage';
+import LoginPage from './pages/LoginPage';
 
-  let models = ["GPT-3.5", "GPT-4"];
+const cache = createCache({
+  key: 'my-app',
+  prepend: true,
+});
 
-  const handleSelectItem = (item: string) => {
-    console.log(item);
-  };
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#3f51b5',
+    },
+  },
+  typography: {
+    fontFamily: 'Roboto, sans-serif',
+  },
+});
 
+const App: React.FC = () => {
   return (
-    <div>
-      <ListGroup
-        heading="Models"
-        items={models}
-        onSelectItem={handleSelectItem}
-      />
-      <SearchProcessor />
-      <Button onClick={() => setAlertVisibility(true)}>Search</Button>
-      {alertVisible && (
-        <Alert onClose={() => setAlertVisibility(false)}>
-          <strong>Searching!</strong> You should see your results soon.
-        </Alert>
-      )}
-    </div>
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <Box sx={{ display: 'flex' }}>
+            <Sidebar />
+            <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
+              <Routes>
+                <Route path="/chat" element={<ChatPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/" element={<ChatPage />} />
+              </Routes>
+            </Container>
+          </Box>
+        </Router>
+      </ThemeProvider>
+    </CacheProvider>
   );
-}
+};
 
 export default App;
