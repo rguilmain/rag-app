@@ -34,7 +34,13 @@ const ChatWindow: React.FC = () => {
         sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}
       >
         <TextField
-          sx={{ marginRight: 1 }}
+          sx={{
+            marginRight: 1,
+            width: "400px",
+            "& .MuiInputBase-root": {
+              height: "56px",
+            },
+          }}
           label="Search for anything ..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
