@@ -21,5 +21,8 @@ def read_root():
 
 @app.get("/search")
 async def search(q: str):
-    answer = await perform_search(q)
-    return {"answer": answer}
+    try:
+        answer = await perform_search(q)
+        return {"answer": answer}
+    except Exception as e:
+        return {"error": str(e)}
