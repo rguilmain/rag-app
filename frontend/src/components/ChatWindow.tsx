@@ -17,6 +17,9 @@ const ChatWindow: React.FC = () => {
         `http://localhost:8000/search?${params.toString()}`
       );
       setResponse(response.data.answer);
+      if (response.data.error) {
+        console.error("Error response from server:", response.data.error);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
