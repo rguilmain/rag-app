@@ -10,6 +10,7 @@ const ChatWindow: React.FC = () => {
     e.preventDefault();
 
     try {
+      setResponse("Searching...");
       const response = await axios.get(
         `http://localhost:8000/search?q=${query}`
       );
