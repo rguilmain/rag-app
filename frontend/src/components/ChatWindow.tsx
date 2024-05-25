@@ -11,8 +11,10 @@ const ChatWindow: React.FC = () => {
 
     try {
       setResponse("Searching...");
+      const params = new URLSearchParams();
+      params.append("q", query);
       const response = await axios.get(
-        `http://localhost:8000/search?q=${query}`
+        `http://localhost:8000/search?${params.toString()}`
       );
       setResponse(response.data.answer);
     } catch (error) {
