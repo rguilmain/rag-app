@@ -15,17 +15,17 @@ app.add_middleware(
 
 
 @app.get("/")
-def read_root():
+async def read_root():
     return {"message": "Hello!"}
 
 
 @app.get("/search")
 async def search(q: str):
+    if not q:
+        raise HTTPException(status_code=400,
+                            detail="Query parameter `q` is required")
     try:
-        if not q:
-            raise HTTPException(status_code=400,
-                                detail="Query parameter `q` is required")
         answer = await perform_search(q)
         return {"answer": answer}
     except Exception as e:
-        return {"error": str(e)}
+        raise HTTPException(status_code=500, detail=str(e))
