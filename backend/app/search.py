@@ -16,7 +16,7 @@ if openai_api_key is None or openai_api_key == "":
 if tavily_api_key is None or tavily_api_key == "":
     raise ValueError("TAVILY_API_KEY is not set or empty")
 
-retriever = TavilySearchAPIRetriever(k=5)
+retriever = TavilySearchAPIRetriever(k=5, api_key=tavily_api_key)
 
 prompt = ChatPromptTemplate.from_template(
     """Answer the question based only on the search results provided.
