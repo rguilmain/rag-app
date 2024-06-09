@@ -28,4 +28,4 @@ async def search(q: str):
         answer = await perform_search(q)
         return {"answer": answer}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=str(e)) from e
