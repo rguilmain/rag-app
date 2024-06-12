@@ -1,4 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from typing import Annotated
+
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.search import perform_search
@@ -20,7 +22,7 @@ async def read_root():
 
 
 @app.get("/search")
-async def search(q: str):
+async def search(q: Annotated[str, Query(max_length=400)]):
     if not q:
         raise HTTPException(status_code=400,
                             detail="Query parameter `q` is required")
