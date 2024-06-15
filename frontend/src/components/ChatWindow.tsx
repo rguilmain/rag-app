@@ -42,12 +42,12 @@ const ChatWindow: React.FC = () => {
         <TextField
           sx={{
             marginRight: 1,
-            width: "400px",
+            width: "600px",
             "& .MuiInputBase-root": {
-              height: "56px",
+              height: "60px",
             },
           }}
-          label="Search for anything ..."
+          label="Research anything..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -55,8 +55,7 @@ const ChatWindow: React.FC = () => {
           Search
         </Button>
       </Box>
-      <Typography variant="h6">Response:</Typography>
-      <Typography sx={{ marginTop: 2, whiteSpace: "pre-wrap" }}>
+      <Typography sx={{ marginTop: 4, whiteSpace: "pre-wrap" }}>
         {response}
       </Typography>
     </Box>

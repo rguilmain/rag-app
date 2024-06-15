@@ -6,7 +6,6 @@ import { Box, Container, Switch, Typography } from "@mui/material";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 
-import Sidebar from "./components/Sidebar";
 import ChatPage from "./pages/ChatPage";
 import LoginPage from "./pages/LoginPage";
 
@@ -43,21 +42,20 @@ const App: React.FC = () => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              minHeight: "100vh",
+              minHeight: "8vh",
             }}
           >
-            <Box sx={{ display: "flex", justifyContent: "center", py: 2 }}>
-              <Typography variant="h4">Ask</Typography>
+            <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>
+              <Typography variant="h3">Research Assistant</Typography>
             </Box>
-            <Sidebar />
-            <Container maxWidth="md" sx={{ mt: 4, mb: 4, flex: 1 }}>
+            <Container maxWidth="md" sx={{ mt: 0, mb: 0, flex: 1 }}>
               <Routes>
                 <Route path="/chat" element={<ChatPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/" element={<ChatPage />} />
               </Routes>
             </Container>
-            <Box sx={{ display: "flex", justifyContent: "center", py: 2 }}>
+            <Box sx={{ display: "flex", justifyContent: "center", py: 0 }}>
               <Switch checked={darkMode} onChange={toggleDarkMode} />
             </Box>
           </Box>
