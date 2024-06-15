@@ -18,7 +18,7 @@ if not openai_api_key:
 if not tavily_api_key:
     raise ValueError("TAVILY_API_KEY is not set or empty")
 
-model = ChatOpenAI(model="gpt-3.5-turbo", api_key=openai_api_key)
+model = ChatOpenAI(model="gpt-4o", temperature=0, api_key=openai_api_key)
 
 prompt = """You are a smart research assistant. Use the search engine to look up information. \
 You are allowed to make multiple calls (either together or in sequence). \
