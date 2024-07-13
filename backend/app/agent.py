@@ -47,7 +47,7 @@ class Agent:
         results = []
         for t in tool_calls:
             print(f"Calling {t}")
-            if not t["name"] in self.tools:
+            if t["name"] not in self.tools:
                 result = "bad tool name, retry"
             else:
                 result = self.tools[t["name"]].invoke(t["args"])
