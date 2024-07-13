@@ -13,13 +13,10 @@ const ChatWindow: React.FC = () => {
       setResponse("Searching...");
       const params = new URLSearchParams();
       params.append("q", query);
-      const response = await axios.get(
+      const serverResponse = await axios.get(
         `http://localhost:8000/search?${params.toString()}`
       );
-      setResponse(response.data.answer);
-      if (response.data.error) {
-        console.error("Error response from server:", response.data.error);
-      }
+      setResponse(serverResponse.data.answer);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
