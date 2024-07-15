@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Button, TextField, Typography, Box } from "@mui/material";
+import { Button, TextField, Box } from "@mui/material";
+import { MuiMarkdown } from "mui-markdown";
 
 const ChatWindow: React.FC = () => {
   const [query, setQuery] = useState("");
@@ -52,9 +53,7 @@ const ChatWindow: React.FC = () => {
           Search
         </Button>
       </Box>
-      <Typography sx={{ marginTop: 4, whiteSpace: "pre-wrap" }}>
-        {response}
-      </Typography>
+      <MuiMarkdown>{response}</MuiMarkdown>
     </Box>
   );
 };

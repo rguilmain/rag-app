@@ -34,6 +34,7 @@ tools = [
 prompt = """You are a smart research assistant. Use the search engine to look up information. \
 You are allowed to make multiple calls (either together or in sequence). \
 Only look up information when you are sure of what you want.
+Your output should be beautifully formatted with Markdown.
 """
 
 search_bot = Agent(model, tools, system=prompt)
