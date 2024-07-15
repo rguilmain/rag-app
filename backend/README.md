@@ -4,9 +4,10 @@ Creates a local Retreival-Augmented Generation (RAG) API.
 
 ## Setup
 
-Copy the `.env.example` file in this directory to a new file, `.env`, and fill it in with your OpenAI API and Tavily API keys. You can aquire these keys here:
+Copy the `.env.example` file in this directory to a new file, `.env`, and fill it in with your OpenAI API key, Tavily API key, and Wolfram Alpha App ID. You can aquire these here:
  - OpenAI API key: https://platform.openai.com/api-keys
  - Tavily API key: https://app.tavily.com/
+ - Wolfram Alpha App ID: https://developer.wolframalpha.com/access
 
 ## Docker
 Build and run.

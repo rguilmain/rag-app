@@ -1,8 +1,13 @@
 import operator
 from typing import TypedDict, Annotated
+from pydantic import BaseModel, Field
 
 from langgraph.graph import StateGraph, END
 from langchain_core.messages import AnyMessage, HumanMessage, SystemMessage, ToolMessage
+
+
+class ToolParamsSchema(BaseModel):
+    query: str = Field(..., description="The search query")
 
 
 class AgentState(TypedDict):
@@ -17,12 +22,13 @@ class Agent:
         graph.add_node("llm", self.call_openai)
         graph.add_node("action", self.take_action)
         graph.add_edge("action", "llm")
-        graph.add_conditional_edges("llm", self.exists_action, {
-            True: "action",
-            False: END
-        })
+        graph.add_conditional_edges(
+            "llm", self.exists_action, {True: "action", False: END}
+        )
         graph.set_entry_point("llm")
         self.graph = graph.compile()
+        for tool in tools:
+            tool.args_schema = ToolParamsSchema
         self.tools = {t.name: t for t in tools}
         self.model = model.bind_tools(tools)
 
@@ -52,7 +58,6 @@ class Agent:
             else:
                 result = self.tools[t["name"]].invoke(t["args"])
             results.append(
-                ToolMessage(tool_call_id=t["id"],
-                            name=t["name"],
-                            content=str(result)))
+                ToolMessage(tool_call_id=t["id"], name=t["name"], content=str(result))
+            )
         return {"messages": results}

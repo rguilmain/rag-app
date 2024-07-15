@@ -8,3 +8,4 @@ langchain-community>=0.2.0,<0.3.0
 langgraph>=0.0.0,<0.1.0
 tavily-python>=0.3.0,<0.4.0
 wikipedia>=1.4.0,<1.5.0
+wolframalpha>=5.1.0,<5.2.0
