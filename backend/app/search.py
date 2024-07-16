@@ -31,10 +31,11 @@ tools = [
     WolframAlphaQueryRun(api_wrapper=WolframAlphaAPIWrapper()),
 ]
 
-prompt = """You are a smart research assistant. Use the search engine to look up information. \
-You are allowed to make multiple calls (either together or in sequence). \
-Only look up information when you are sure of what you want.
-Your output should be beautifully formatted with Markdown.
+prompt = """You are a smart research assistant. \
+Use Wikipedia and Tavily to look up relevant information, and Wolfram Alpha to perform any necessary calculations. \
+You are allowed to make multiple calls to these tools either simultaneously or in sequence. \
+Only look up information when you are sure of what you want. \
+Your output should be beautifully formatted in Markdown.
 """
 
 search_bot = Agent(model, tools, system=prompt)
