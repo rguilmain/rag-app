@@ -23,7 +23,7 @@ if not tavily_api_key:
 if not wolfram_alpha_appid:
     raise ValueError("WOLFRAM_ALPHA_APPID is not set or empty")
 
-model = ChatOpenAI(model="gpt-4o", temperature=0, api_key=openai_api_key)
+model = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=openai_api_key)
 
 tools = [
     TavilySearchResults(max_results=3, api_key=tavily_api_key),
