@@ -9,6 +9,9 @@ Copy the `.env.example` file in this directory to a new file, `.env`, and fill i
  - Tavily API key: https://app.tavily.com/
  - Wolfram Alpha App ID: https://developer.wolframalpha.com/access
 
+ To enable tracing with LangSmith, fill in your LangChain API key and project name here. You can set these up and view tracing here:
+ - LangSmith: https://smith.langchain.com/
+
 ## Docker
 Build and run.
 ```

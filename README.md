@@ -14,6 +14,9 @@ Once you've cloned this repository locally, you'll need to provide the applicati
 - Tavily API key: https://app.tavily.com/
 - Wolfram Alpha App ID: https://developer.wolframalpha.com/access
 
+ To enable tracing with LangSmith, fill in your LangChain API key and project name here. You can set these up and view tracing here:
+ - LangSmith: https://smith.langchain.com/
+
 # Usage
 
 In the root of the project, run:
