@@ -83,7 +83,7 @@ const App: React.FC = () => {
                   letterSpacing: "-0.5px",
                 }}
               >
-                Research Assistant
+                Research Agent
               </Typography>
               <FormControlLabel
                 control={
