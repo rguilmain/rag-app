@@ -1,9 +1,12 @@
+import logging
 from typing import Annotated
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.search import perform_search
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
@@ -30,4 +33,5 @@ async def search(q: Annotated[str, Query(max_length=400)]):
         answer = await perform_search(q)
         return {"answer": answer}
     except Exception as e:
+        logger.exception("Search failed for query %r", q)
         raise HTTPException(status_code=500, detail=str(e)) from e

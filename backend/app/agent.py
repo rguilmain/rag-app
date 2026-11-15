@@ -1,9 +1,12 @@
+import logging
 import operator
 from typing import TypedDict, Annotated
 from pydantic import BaseModel, Field
 
 from langgraph.graph import StateGraph, END
 from langchain_core.messages import AnyMessage, HumanMessage, SystemMessage, ToolMessage
+
+logger = logging.getLogger(__name__)
 
 
 class ToolParamsSchema(BaseModel):
@@ -56,7 +59,11 @@ class Agent:
             if t["name"] not in self.tools:
                 result = "bad tool name, retry"
             else:
-                result = self.tools[t["name"]].invoke(t["args"])
+                try:
+                    result = self.tools[t["name"]].invoke(t["args"])
+                except Exception as e:
+                    logger.exception("Tool %s failed", t["name"])
+                    result = f"Error calling tool {t['name']}: {type(e).__name__}: {e}"
             results.append(
                 ToolMessage(tool_call_id=t["id"], name=t["name"], content=str(result))
             )

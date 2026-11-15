@@ -47,8 +47,13 @@ const ChatWindow: React.FC = () => {
       setResponse(serverResponse.data.answer);
     } catch (error) {
       console.error("Error fetching data:", error);
+      const detail = axios.isAxiosError(error)
+        ? error.response?.data?.detail
+        : undefined;
       setResponse(
-        "Sorry, I encountered an error while researching. Please try again."
+        detail
+          ? `Sorry, I encountered an error while researching: ${detail}`
+          : "Sorry, I encountered an error while researching. Please try again."
       );
     } finally {
       setIsLoading(false);
