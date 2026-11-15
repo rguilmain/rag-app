@@ -41,9 +41,7 @@ const ChatWindow: React.FC = () => {
       setResponse("Researching...");
       const params = new URLSearchParams();
       params.append("q", query);
-      const serverResponse = await axios.get(
-        `http://localhost:8000/search?${params.toString()}`
-      );
+      const serverResponse = await axios.get(`/search?${params.toString()}`);
       setResponse(serverResponse.data.answer);
     } catch (error) {
       console.error("Error fetching data:", error);

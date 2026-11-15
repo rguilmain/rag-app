@@ -1,3 +1,11 @@
+# Dev stage: Vite dev server with hot-reload
+FROM node:18-alpine AS dev
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+EXPOSE 5173
+CMD ["npm", "run", "dev"]
+
 # Stage 1: Build the React application
 FROM node:18-alpine as builder
 WORKDIR /app
