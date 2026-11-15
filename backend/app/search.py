@@ -1,13 +1,13 @@
 import os
 from dotenv import load_dotenv
 
-from langchain_community.tools import WikipediaQueryRun, WolframAlphaQueryRun
+from langchain_community.tools import WikipediaQueryRun
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_community.utilities import WikipediaAPIWrapper
-from langchain_community.utilities.wolfram_alpha import WolframAlphaAPIWrapper
 from langchain_openai import ChatOpenAI
 
 from app.agent import Agent
+from app.tools import WolframAlphaTool
 
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -28,7 +28,7 @@ model = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=openai_api_key)
 tools = [
     TavilySearchResults(max_results=3, api_key=tavily_api_key),
     WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper()),
-    WolframAlphaQueryRun(api_wrapper=WolframAlphaAPIWrapper()),
+    WolframAlphaTool(app_id=wolfram_alpha_appid),
 ]
 
 prompt = """You are a smart research assistant. \
