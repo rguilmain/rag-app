@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_community.utilities import WikipediaAPIWrapper
+from langchain_community.utilities.tavily_search import TavilySearchAPIWrapper
 from langchain_openai import ChatOpenAI
 
 from app.agent import Agent
@@ -26,7 +27,10 @@ if not wolfram_alpha_appid:
 model = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=openai_api_key)
 
 tools = [
-    TavilySearchResults(max_results=3, api_key=tavily_api_key),
+    TavilySearchResults(
+        max_results=3,
+        api_wrapper=TavilySearchAPIWrapper(tavily_api_key=tavily_api_key),
+    ),
     WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper()),
     WolframAlphaTool(app_id=wolfram_alpha_appid),
 ]
