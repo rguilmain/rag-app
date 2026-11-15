@@ -1,0 +1,12 @@
+{
+  "name": "rag-app-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Maintenance scripts for the rag-app repository (screenshot capture).",
+  "scripts": {
+    "capture": "node capture-demo.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "^25.17.0"
+  }
+}

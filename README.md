@@ -2,9 +2,11 @@
 
 A Retrieval-Augmented Generation (RAG) application made with LangChain, Tavily, FastAPI, and React.
 
+![The Research Agent answering a question about retrieval-augmented generation](./assets/demo.png)
+
 This application uses LangGraph to create a multi-tool agent that can perform multiple Internet searches to various services of the LLM's choosing both in parallel and in serial to find what it needs to answer the user's query.
 
-![State Graph](./state_graph.png "State Graph")
+![State Graph](./assets/state_graph.png "State Graph")
 
 # Setup
 
